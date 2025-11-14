@@ -77,9 +77,9 @@ export function main() {
                     console.log("\n1 - Comprar");
                     console.log("2 - Voltar ao menu");
 
-                    let sub = readlinesync.questionInt("");
+                    let submenu = readlinesync.questionInt("");
 
-                    switch (sub) {
+                    switch (submenu) {
 
                         case 1:
                             console.log("\nDigite o valor pago:");
