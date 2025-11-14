@@ -1,5 +1,6 @@
 export abstract class Principal{
-    visualizarProdutos1() {
+
+    public visualizarProdutos(): void {
         throw new Error("Method not implemented.");
     }
 
@@ -38,12 +39,25 @@ export abstract class Principal{
     this._tipo = tipo;
    }
 
-   public comprar(valorRecebido: number): boolean {
+    public visualizarProdutos1(): void {
+        console.log("-----------  Produto  -------------");
+        console.log(`Nome: ${this._nome}`                );
+        console.log(`Preço: R$ ${this._preco.toFixed(2)}`);
+        console.log(`Tipo: ${this._tipo}                `);
+    }
+
+   public comprar(valorRecebido: number, cupom?: string): boolean {
 
     let precoFinal = this._preco
 
+    if (cupom === "CupomDesconto") {
+            precoFinal *= 0.90; 
+            console.log(`\nCupom 'CupomDesconto' aplicado! Novo preço: R$ ${precoFinal.toFixed(2)}`);
+        } else if (cupom)
+             console.log("\nCupom inválido. Preço cheio mantido.");
+
     if(precoFinal > valorRecebido){
-        console.log(`\nValor Insuficiente! Faltam R$ ${(this._preco - valorRecebido).toFixed(2)}`);
+        console.log(`\nValor Insuficiente! Faltam R$ ${(precoFinal - valorRecebido).toFixed(2)}`);
         return false;
     }
 
@@ -54,7 +68,4 @@ export abstract class Principal{
     return true;
 
    }
-
-   public abstract visualizarProdutos(): void;
-
 }

@@ -1,11 +1,13 @@
 import { Principal } from "./Principal";
 
 export class Estendida extends Principal{
-    public visualizarProdutos(): void {
-        throw new Error("Method not implemented.");
-    }
 
     private _codigoProduto: number;
+
+    constructor(nome: string, preco: number, tipo: number, codigoProduto: number) {
+        super(nome, preco, tipo);
+        this._codigoProduto = codigoProduto;
+    }
 
     public get codigoProduto(){
         return this._codigoProduto;
@@ -15,14 +17,8 @@ export class Estendida extends Principal{
         this._codigoProduto = codigoProduto;
     }
 
-    constructor(nome: string, preco: number, tipo: number, codigoProduto: number){
-        super(nome, preco, tipo);
-        this._codigoProduto = codigoProduto;
-    }
-
-    public visualizarProdutos1(): void{
-        super.visualizarProdutos1();
-
+   public override visualizarProdutos(): void {
+        super.visualizarProdutos();
         console.log(`\n         --- Detalhes da Joia ---          `);
         console.log(`  Código do Produto: ${this._codigoProduto}`  );
         console.log(`  Nome do Produto: ${this.nome}`              );
