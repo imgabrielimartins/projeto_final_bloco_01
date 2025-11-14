@@ -2,12 +2,10 @@ import { Principal } from "./Principal";
 
 export class Estendida extends Principal {
 
-    private id: number;  
     private codigo: number;
 
-    constructor(nome: string, preco: number, id: number, codigo: number) {
-        super(nome, preco);
-        this.id = id;
+    constructor(id: number, nome: string, preco: number, codigo: number) {
+        super(id, nome, preco); 
         this.codigo = codigo;
     }
 
@@ -16,16 +14,15 @@ export class Estendida extends Principal {
     }
 
     public override visualizarProdutos(): void {
-        console.log(`Código: ${this.codigo}`);
-        console.log(`ID: ${this.id}`);
         super.visualizarProdutos();
+        console.log(`Código: ${this.codigo}`);
     }
 
     public comprar(valorPago: number, cupom?: string): void {
 
         let precoFinal = this.getPreco();
 
-        if (cupom?.toUpperCase() === "DESCONTO10") {
+        if (cupom?.toUpperCase() === "CupomDesconto") {
             precoFinal = precoFinal * 0.9;
             console.log("\nCupom aplicado! 10% OFF");
         }
@@ -34,7 +31,7 @@ export class Estendida extends Principal {
         console.log(`Valor pago: R$ ${valorPago.toFixed(2)}`);
 
         if (valorPago < precoFinal) {
-            console.log("\n⚠ Valor insuficiente!");
+            console.log("\nValor insuficiente!");
             return;
         }
 
